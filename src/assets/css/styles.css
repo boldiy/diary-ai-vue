@@ -1,0 +1,633 @@
+:root {
+    --primary-color: #5e72e4;
+    --secondary-color: #f7fafc;
+    --accent-color: #ff7675;
+    --text-color: #2d3748;
+    --light-gray: #e2e8f0;
+    --dark-gray: #4a5568;
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    /* 禁止点击高亮 */
+    touch-action: manipulation;
+    /* 禁止双击缩放 */
+    user-select: none;
+    /* 禁止文本选择，也能防止部分双击行为 */
+}
+
+body {
+    background-color: #ffffff;
+    color: var(--text-color);
+}
+
+.container {
+    width: 100%;
+    max-width: 480px;
+    min-height: 100vh;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 底部导航栏 */
+.nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    /* 放置在视口中间 */
+    transform: translateX(-50%);
+    /* 向左偏移自身宽度的一半，实现居中 */
+    width: 100%;
+    max-width: 480px;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid var(--light-gray);
+    z-index: 100;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 10px;
+    color: var(--dark-gray);
+    text-decoration: none;
+    flex: 1;
+    justify-content: center;
+    height: 100%;
+}
+
+.nav-item i {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.nav-item.active {
+    color: var(--primary-color);
+}
+
+/* 内容区域 */
+.content {
+    min-height: calc(100vh - 84px);
+    padding: 15px;
+    padding-bottom: 75px;
+}
+
+/* 登录页面样式 */
+.welcome-screen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    color: white;
+    text-align: center;
+}
+
+.logo {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.welcome-title {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.welcome-subtitle {
+    font-size: 16px;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.auth-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 15px;
+}
+
+.btn {
+    padding: 12px 20px;
+    border-radius: 50px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+/* 日记列表样式 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.header-actions i {
+    font-size: 20px;
+    color: var(--dark-gray);
+    cursor: pointer;
+}
+
+.diary-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--primary-color);
+    width: 100%;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    cursor: pointer;
+}
+
+.diary-date {
+    font-size: 12px;
+    color: var(--dark-gray);
+    margin-bottom: 5px;
+}
+
+.diary-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.diary-preview {
+    font-size: 14px;
+    color: var(--dark-gray);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.diary-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mood {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}
+
+.tags {
+    display: flex;
+    gap: 8px;
+}
+
+.tag {
+    background-color: var(--secondary-color);
+    color: var(--dark-gray);
+    padding: 4px 8px;
+    border-radius: 50px;
+    font-size: 10px;
+}
+
+/* 编辑日记样式 */
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.editor-header i {
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--dark-gray);
+}
+
+.editor-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.editor-title input {
+    width: 100%;
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+.editor-content textarea {
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 200px;
+    resize: none;
+    outline: none;
+    margin-bottom: 20px;
+}
+
+.editor-tools {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.tool-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.tool-button i {
+    font-size: 18px;
+    color: var(--dark-gray);
+}
+
+.mood-selector {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.mood-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.mood-option i {
+    font-size: 25px;
+    color: var(--dark-gray);
+}
+
+.mood-option.selected {
+    color: var(--primary-color);
+}
+
+/* 日历样式 */
+.calendar-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-month {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.calendar-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.calendar-nav i {
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--dark-gray);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-bottom: 30px;
+}
+
+.calendar-grid .weekday {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--dark-gray);
+}
+
+.calendar-date {
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+}
+
+.calendar-date.has-entry {
+    background-color: var(--secondary-color);
+    position: relative;
+}
+
+.calendar-date.today {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* 统计页面样式 */
+.stats-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stats-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.stats-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.mood-chart {
+    margin-top: 20px;
+    height: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.chart-bar {
+    width: 18%;
+    background-color: var(--light-gray);
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.chart-bar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+}
+
+.chart-label {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 10px;
+    color: var(--dark-gray);
+}
+
+.top-tags {
+    margin-top: 20px;
+}
+
+.top-tag {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.top-tag:last-child {
+    margin-bottom: 0;
+}
+
+.top-tag span {
+    flex: 1;
+}
+
+/* 设置页面样式 */
+.settings-list {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.settings-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.settings-item:last-child {
+    border-bottom: none;
+}
+
+.settings-icon {
+    margin-right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-info {
+    flex: 1;
+}
+
+.settings-label {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.settings-description {
+    font-size: 14px;
+    color: var(--dark-gray);
+}
+
+.settings-control {
+    margin-left: 15px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.profile-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-avatar i {
+    font-size: 30px;
+    color: white;
+}
+
+.profile-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.profile-email {
+    font-size: 14px;
+    color: var(--dark-gray);
+}
+
+/* 浮动按钮 */
+.fab {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    z-index: 10;
+}
+
+.fab i {
+    font-size: 24px;
+}
+
+/* 搜索页面样式 */
+.search-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: var(--secondary-color);
+    border-radius: 50px;
+    padding: 10px 15px;
+}
+
+.search-input i {
+    margin-right: 10px;
+    color: var(--dark-gray);
+}
+
+.search-input input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 16px;
+}
+
+.filters {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.filter {
+    padding: 6px 12px;
+    border-radius: 50px;
+    background-color: white;
+    border: 1px solid var(--light-gray);
+    font-size: 14px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.filter.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* 允许在输入框和文本区域中选择文本 */
+input,
+textarea {
+    user-select: auto;
+    -webkit-user-select: auto;
+    touch-action: auto;
+}
